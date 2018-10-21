@@ -7,6 +7,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function user_requests()
+    {
+        return $this->belongsToMany('App/Room','user_id','room_id' , 'user_requests');
+    }
+
+    public function user_phone_requests()
+    {
+        return $this->belongsToMany('App/Room','user_id','room_id','user_phone_requests');
+    }
+
+    public function rooms()
+    {
+        return $this->belongsToMany('App/Room','user_id','room_id','user_rooms');
+    }
+
     use Notifiable;
 
     /**
