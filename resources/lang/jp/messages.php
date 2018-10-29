@@ -1,0 +1,30 @@
+<?php
+
+return [
+
+    'page_name' => 'ハノイ下宿',
+    'home' => 'ホーム',
+    'sign_in' => 'サインイン',
+    'sign_up' => 'サインアップ',
+    'search' => '検索',
+    'address' => '場所を。。',
+    'email_address' => 'Eメール・アドレス',
+    'password' => 'パスワード',
+    'remember_me' => 'パスワードを保存',
+    'forgot_password' => 'パスワードが忘れた場合',
+    'log_in' => 'ログイン',
+    'register' => '登録',
+    'name' => '名前',
+    'confirm_password' => 'パスワードの確認',
+    'reset_password' => 'パスワードを変更',
+    'send_password_reset_link' => 'パスワード変更のリングを送る',
+    'i_have_a_room' => '私は下宿があります',
+    'i_want_to_rent_a_room' => '私は下宿を探したいです',
+    'i_want_to_manage_my_room' => '部屋管理のページはこちら',
+    'host_banner' => '簡単に搭載するのに、効率なんだ。',
+    'host_page_description' => 'もう便利になりました！！たくさんお金をかかるほど新聞などに報告する必要が無く、このページは部屋を貸す人のページで、自分の部屋の広告などを簡単で効率的に搭載できます。',
+    'rent_page_banner' => '楽探しもすぐ適切を見つけるよ。',
+    'rent_page_description' => 'ハノイでは下宿がどこでもありますし、全てはこちらにあります。楽に下宿の場所、家賃、環境などを探せます。',
+    'manager_page_banner' => 'もうノートに書くことや大変計算が必要がなく、全ては私に任せてね。',
+    'manager_page_description' => 'このページは財布機能で消費、迷惑計算などの管理機能が付いています。もうノートなどのようなしつこくて環境によくない製品が必要なくなります。',
+];
