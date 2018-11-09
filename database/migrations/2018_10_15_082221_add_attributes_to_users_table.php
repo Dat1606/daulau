@@ -14,7 +14,8 @@ class AddAttributesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('occupation');
+            $table->string('occupation');
+            $table->string('exact_address');
             $table->integer('age');
             $table->integer('type');
             //

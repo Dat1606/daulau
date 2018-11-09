@@ -10,7 +10,7 @@
       </a>
     </div>
     <div class="content-center col-md-3 text-center">
-      <a href="#">
+      <a href="{{ route('rooms.index') }}">
         <h3 class="banner">@lang('messages.i_want_to_rent_a_room')</h3>
         <h5 class="slogan">@lang('messages.rent_page_banner')</h5>
         <p class="description">@lang('messages.rent_page_description')</p>

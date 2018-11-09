@@ -100,3 +100,42 @@
 .description {
   padding-top: 30px;
 }
+
+.room-items {
+  margin-top: 70px;
+  margin-left:5%;
+}
+
+.room-item {
+  margin-top: 30px;
+  border-bottom: 1px solid;
+}
+
+.banner-image {
+  width:230px;
+  height:150px;
+}
+
+.room-image {
+  float: left;
+}
+
+.room-content {
+  margin-left: 10px;
+  position: relative;
+}
+
+.show-room-image {
+  margin-top: 30px;
+  width: 400px;
+  height: 330px;
+}
+
+.show-room-content {
+  margin-top: 30px;
+}
+
+.img-slider {
+  width: 70px;
+  height: 70px;
+}
