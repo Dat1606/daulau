@@ -19,6 +19,15 @@
             <p>@lang('messages.present_number') {{ $room->present_number }} @lang('messages.people')</p>
             <p>@lang('messages.width') {{ $room->width }} @lang('messages.square_metre')</p>
             <p>@lang('messages.floor') {{ $room->floor }} @lang('messages.floor1')</p>
+            @if (Auth::check())
+                {{ Form::open(array('url' => '/user_rooms', 'method' => 'post')) }}
+                  {{ Form::hidden('user_id', Auth::id()) }}
+                  {{ Form::hidden('room_id', $room->id) }}
+                  {{Form::submit(trans('messages.order'), ['class' => 'btn btn-success'])}}
+                {{ Form::close() }}
+            @else
+              <a href="{{ route('login') }}"><button class="btn btn-success">@lang('messages.order')</button></a>
+            @endif
           </div>
           <div class="col-md-6">
             <p>@lang('messages.type') {{ $room->type }}</p>

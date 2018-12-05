@@ -7,23 +7,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    public function user_requests()
-    {
-        return $this->belongsToMany('App/Room','user_id','room_id' , 'user_requests');
-    }
-
-    public function user_phone_requests()
-    {
-        return $this->belongsToMany('App/Room','user_id','room_id','user_phone_requests');
-    }
+    use Notifiable;
 
     public function rooms()
     {
-        return $this->belongsToMany('App/Room','user_id','room_id','user_rooms');
+        return $this->belongsToMany(Room::class, 'user_rooms');
     }
 
-    use Notifiable;
-
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'user_groups' );
+    }
     /**
      * The attributes that are mass assignable.
      *

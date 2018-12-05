@@ -15,8 +15,8 @@ class CreateGroupTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_room_id')->unsigned();
-            $table->foreign('user_room_id')->references('id')->on('user_rooms');
+            $table->integer('room_id')->unsigned();
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->string('name');
             $table->timestamps();
         });

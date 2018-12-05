@@ -19,6 +19,7 @@ class CreateUserRoomTable extends Migration
             $table->integer('room_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('room_id')->references('id')->on('rooms');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

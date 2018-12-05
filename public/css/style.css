@@ -1,4 +1,7 @@
-@import "~bootstrap/scss/bootstrap";
+.body-content {
+  position: relative;
+  min-height: 100vh;
+}
 
 #logo {
   float: left;
@@ -30,7 +33,7 @@
   color: #fff;
   font-family: Roboto,sans-serif;
   background-color: #009688!important;
-  margin-top: 70px;
+  position: absolute;
 }
 
 .footer-copyright {
@@ -109,6 +112,7 @@
 .room-item {
   margin-top: 30px;
   border-bottom: 1px solid;
+  margin-bottom: 10px;
 }
 
 .banner-image {
@@ -122,6 +126,7 @@
 
 .room-content {
   margin-left: 10px;
+  height:150px;
   position: relative;
 }
 
@@ -129,6 +134,7 @@
   margin-top: 30px;
   width: 400px;
   height: 330px;
+  margin-bottom: 30px;
 }
 
 .show-room-content {
@@ -138,4 +144,80 @@
 .img-slider {
   width: 70px;
   height: 70px;
+}
+
+.add-btn {
+  float: right;
+}
+
+.group-form {
+  margin-right: 30px;
+}
+
+.control-bar-ul {
+  list-style-type: none;
+  margin-top: 0;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+  background-color: #212529;;
+}
+
+.control-bar-ul li a {
+  display: block;
+  color:white;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.control-bar-ul li a:hover:not(.active) {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.control-left {
+  margin-left: 0;
+  width:20%;
+  margin-right: 25px;
+  min-height: 600px;
+}
+
+.month-select {
+  margin-top: 10px;
+  margin-right: 5px;
+  width: 40%;
+  font-size: 18px;
+}
+
+.main-content {
+  margin-bottom: 100px;
+}
+
+.add-member-btn {
+  margin-top: 20px;
+  margin-right: 200px;
+}
+
+.groups {
+  min-width: 320px;
+  background-color: #F6F5F5;
+  font-size: 15px;
+  margin-bottom: 20px!important;
+}
+
+.list-group li a:hover {
+  background-color: #4CAF50;
+}
+
+.bold {
+  margin-top: 25vh;
+  margin-bottom: 50vh;
+}
+
+.back-btn {
+  margin-left: 120vh;
+}
+
+.text1 {
+  margin-bottom: 50px;
 }

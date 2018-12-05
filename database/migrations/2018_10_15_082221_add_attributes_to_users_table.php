@@ -14,10 +14,10 @@ class AddAttributesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('occupation');
-            $table->string('exact_address');
-            $table->integer('age');
-            $table->integer('type');
+            $table->string('occupation')->nullable()->default(null);
+            $table->string('exact_address')->nullable()->default(null);
+            $table->integer('age')->nullable()->default(null);
+            $table->integer('type')->default(1);
             //
         });
     }

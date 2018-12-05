@@ -9,6 +9,6 @@ class Group extends Model
     //
     public function group_consumptions()
     {
-        return $this->hasMany('App/Group_consumption');
+        return $this->hasMany('App/GroupConsumption');
     }
 }
