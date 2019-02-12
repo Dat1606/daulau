@@ -6,12 +6,19 @@
       @include('control_bar')
     </div>
     <div class="col-md-9"> 
+      @if (session('status'))
+        <div class="alert alert-success margin-top">
+          {{ session('status') }}
+        </div>
+      @endif
+      <div class="col-md-11">
+      <div class="alert alert-success margin-top" style="display:none"></div>
       @if(!$users->isEmpty())
         <button data-toggle="modal" data-target="#add-member" class="btn btn-success glyphicon glyphicon-plus add-member-btn">@lang('messages.add_member')
         </button>
       @endif
-      <div class="col-md-11">
-      <div class="alert alert-success" style="display:none"></div>
+      <button class="btn btn-success add-member-btn" data-toggle="modal" data-target="#fund">@lang('messages.raise_fund')</button>
+
       <div class="selector">
         <span><b>Select Date Range: </b></span><input class="month-select" id="daterange" name="dates" value="{{ date('Y-m') }}">
       </div>
@@ -20,6 +27,12 @@
       <table class="table table-hover" id="table">
         @include('table',['all_consumptions' => $all_consumptions,'group'=>$group, 'users' => $users, 'groupConsumptions' => $groupConsumptions])
       </table>
+
+      <h2 class="margin-top">Requests</h2>
+      <table class="table table-hover margin-bottom">
+        @include('GroupRequestTable', ['userGroupRequests' => $userGroupRequests])
+      </table>
+
     </div>
   </div>
 <div class="modal" id="add-product" tabindex="-1" role="dialog">
@@ -72,6 +85,32 @@
         {{ Form::hidden('group_id', $group->id)}}
         {{Form::submit(trans('messages.add_member'), ['class' => 'btn btn-success add-btn'])}}
       {{ Form::close() }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.close')</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="fund" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">@lang('messages.fund')</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ Form::open(array('url' => '/group_requests', 'method' => 'post')) }}
+          {{ Form::hidden('user_group_id', $currentUserGroup->id) }}
+          {{ Form::label('value', trans('messages.withdraw_message'))}}
+          {{ Form::number('value', null) }}
+          {{ Form::label('type', trans('messages.type'))}}
+          {{ Form::select('type', array(0 => trans('messages.withdraw_money'),1 => trans('messages.raise_fund'))) }}
+          {{Form::submit(trans('messages.create'), ['class' => 'btn btn-success add-btn'])}}
+        {{ Form::close() }}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.close')</button>

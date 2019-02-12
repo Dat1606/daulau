@@ -18,6 +18,7 @@ class CreateGroupTable extends Migration
             $table->integer('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->string('name');
+            $table->integer('budget')->default(0);
             $table->timestamps();
         });
     }

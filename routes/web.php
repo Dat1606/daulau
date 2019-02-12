@@ -24,3 +24,4 @@ Route::get('/groups/{id}/analytics', 'GroupController@analytics')->middleware('a
 Route::resource('groups', 'GroupController')->middleware('auth');
 Route::resource('user_groups', 'UserGroupController')->middleware('auth');
 Route::resource('group_consumptions', 'GroupConsumptionController')->middleware('auth');
+Route::resource('group_requests', 'UserGroupRequestController')->middleware('auth');

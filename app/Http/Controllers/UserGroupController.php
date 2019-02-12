@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserGroup;
 use App\User;
+use App\UserGroupRequest;
 use Illuminate\Http\Request;
 
 class UserGroupController extends Controller
@@ -75,7 +76,7 @@ class UserGroupController extends Controller
      */
     public function update(Request $request, user_groups $user_groups)
     {
-        //
+
     }
 
     /**

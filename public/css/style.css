@@ -221,3 +221,25 @@
 .text1 {
   margin-bottom: 50px;
 }
+
+.margin-top {
+  margin-top: 50px;
+}
+
+.margin-bottom {
+  margin-bottom: 50px;
+}
+
+.group-image {
+  height: 100px;
+  width: 100px;
+}
+
+.group {
+  display: inline-block;
+  min-width: 285px;
+  max-width: 285px;
+  background-color:#E0FFFF;
+  margin-right: 20px;
+  margin-top: 20px;
+}

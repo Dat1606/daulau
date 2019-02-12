@@ -25,7 +25,7 @@
           @elseif ($groupConsumption->type == 5)
             @lang('messages.hire_fee')
           @else
-            @lang('messages.others'))
+            @lang('messages.others')
           @endif
     </td>
     <td>{{ $groupConsumption->quantity }}</td>

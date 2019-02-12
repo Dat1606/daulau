@@ -6,7 +6,7 @@
       @include('control_bar')
     </div>
     <div class="col-md-9">
-      @if(!$rooms->isEmpty())
+  @if(!$rooms->isEmpty())
           <div class="col-md-11 room-items">
     @foreach ($rooms as $room)
       <div class="room-item col-md-8">

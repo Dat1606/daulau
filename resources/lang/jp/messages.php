@@ -73,6 +73,19 @@ return [
     'water_consumption' => '',
     'create_date' => '作成日',
     'filter' => 'フィルタ',
-
+    'month' => '月',
+    'month_analytics' => '月による統計',
+    'analytics_by_person' => '人による統計',
+    'consumption' => '消費',
+    'fund' => '資金',
+    'withdraw_message' => '欲しい価値を入力してください',
+    'supported_budget' => '払った資金',
+    'withdrew_money' => '下ろした資金',
+    'remaining_budget' => '残りの金額',
+    'raise_fund' => '資金注入',
+    'withdraw_money' => '資金下ろし',
+    'all_debt' => '総借金',
+    'amount' => '数量',
+    'action' => 'アクション',
 
 ];

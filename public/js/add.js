@@ -18,7 +18,6 @@ $(document).ready(function() {
 
     },
     success: function(result) {
-      
       if (result.errors) {
         jQuery.each(result.errors, function(key, value){
           jQuery('.alert-danger').show();
@@ -38,7 +37,8 @@ $(document).ready(function() {
           + '</td><td>' + result.quantity + '</td><td>' + result.created_at + 
           '</td><td>'+ result.user_id + '</td><td>' + result.total_fee + '</td></tr>';
         
-        newTotalFee = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(total_fee);
+        newTotalFee = total_fee.toLocaleString(
+            undefined, { minimumFractionDigits: 0 });;
         $('.alert').show();
         jQuery('.alert').html("Added successfully!!");
         $('#table').fadeOut();
@@ -66,7 +66,7 @@ $(document).ready(function() {
         _token : $('meta[name="csrf-token"]').attr('content'),
     },
     success: function(result) {
-      
+      console.log(result);
       if (result.errors) {
         jQuery.each(result.errors, function(key, value){
           jQuery('.alert-danger').show();

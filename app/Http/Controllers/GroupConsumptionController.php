@@ -10,7 +10,7 @@ class GroupConsumptionController extends Controller
 {
     protected $validationRules = [
         'name' => 'required',
-        'total_fee' => 'required',
+        'total_fee' => 'required|numeric|min:0',
         'quantity' => 'required',
         'type' => 'required'
     ];

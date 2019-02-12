@@ -40,11 +40,13 @@
           </div>
           </div>
       </div>
-      <h2>Groups:</h2>
-      <div class="groups list-group">
+      <div class="">
         @foreach ($groups as $group)
-          <a href="{{route('groups.show', [$group->id])}}"
-            class="list-group-item"><b>Group--{{ $group->name }}</b></a>
+          <div class="group">
+            <a href="{{route('groups.show', [$group->id])}}" class="group-text">
+                <img class="group-image" src="https://cdnservices.group.com/media/5575765/group-logo.png">
+              <b>  {{ $group->name }}</b></a>
+          </div>
         @endforeach
       </div>
     </div>
