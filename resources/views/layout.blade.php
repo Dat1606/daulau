@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.3.1.js')}}"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -31,7 +32,7 @@
           <span class="nav-word">or</span>
           <a href="{{ route('register') }}" class="nav-item">@lang('messages.sign_up')</a>
         @else
-        <li class="nav-item dropdown">
+        <h2 class="nav-item dropdown">
           <a href="#" class="dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             {{ Auth::user()->name }}

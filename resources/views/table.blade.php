@@ -7,6 +7,7 @@
     <th scope="col">@lang('messages.create_date')</th>
     <th scope="col">@lang('messages.creator')</th>
     <th scope="col">@lang('messages.total_fee')</th>
+    <th scope="col">@lang('messages.action')</th>
   </tr>
 </thead>
 <tbody id="table-data">
@@ -32,6 +33,15 @@
     <td>{{ $groupConsumption->created_at }}</td>
     <td>{{ DB::table('users')->where('id', $groupConsumption->user_id)->value('name') }}</td>
     <td>{{ number_format( $groupConsumption->total_fee) }}</td>
+    <td><a href="{{ route('group_consumptions.edit',$groupConsumption->id) }}"><button class="btn btn-primary edit-btn"><i class="fa fa-edit"></i></button></a>
+      <span class="delete-btn">
+        {{ Form::open(['method' => 'DELETE', 'route' => array('group_consumptions.destroy', $groupConsumption->id)]) }}
+          {{ Form::hidden('id', $groupConsumption->id) }}
+           {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-warning btn-sm'] )  }}
+        {{ Form::close() }}
+      </span>
+
+    </td>
   </tr>
   @endforeach
   <th scope="row">All Fees</th>

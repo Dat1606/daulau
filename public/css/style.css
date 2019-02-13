@@ -148,6 +148,7 @@
 
 .add-btn {
   float: right;
+  margin-top:20px;
 }
 
 .group-form {
@@ -251,4 +252,14 @@
 
 .text-white {
   color: white;
+}
+
+.edit-btn {
+  font-size: 10px!important;
+}
+
+.delete-btn {
+  font-size: 20px;
+  color: red;
+  display: inline-block;
 }

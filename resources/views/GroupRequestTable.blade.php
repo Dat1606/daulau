@@ -26,9 +26,9 @@
         <td>@if ($userGroupRequest->status == '0')
                 <i class="glyphicon glyphicon-briefcase"></i><span class="font-weight-bold text-warning">Pending</span>
             @elseif ($userGroupRequest->status == '1')
-                <i class="fas fa-check-circle"></i><span class="font-weight-bold text-danger">Accepted</span>
+                <i class="fa fa-check-circle"></i><span class="font-weight-bold text-danger">Accepted</span>
             @elseif ($userGroupRequest->status == '2')
-                <i class="fas fa-skull-crossbones"></i><span class="font-weight-bold text-success">Declined</span>
+                <i class="fa fa-skull-crossbones"></i><span class="font-weight-bold text-success">Declined</span>
             @endif
         </td>
         <td>@if($userGroupRequest->status == '0')

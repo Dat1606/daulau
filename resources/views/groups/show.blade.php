@@ -11,7 +11,7 @@
           {{ session('status') }}
         </div>
       @endif
-      <div class="col-md-11">
+      <div class="col-md-12">
       <div class="alert alert-success margin-top" style="display:none"></div>
       @if(!$users->isEmpty())
         <button data-toggle="modal" data-target="#add-member" class="btn btn-success glyphicon glyphicon-plus add-member-btn">@lang('messages.add_member')
@@ -163,5 +163,9 @@
     }
   });
   });
+  $(".delete-btn").on("submit", function(){
+    return confirm("Are you sure?");
+  });
+
 </script>
 @endsection
