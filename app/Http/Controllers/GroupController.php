@@ -65,12 +65,12 @@ class GroupController extends Controller
             $userGroupRequests = UserGroupRequest::whereIn('user_group_id', $groupUsers->pluck('id'))->orderBy('created_at', 'desc')->get();
             if (!isset($_GET['startDate'])) 
             {
-                $groupConsumptions = GroupConsumption::whereRaw( 'MONTH(created_at) = ? ',[$currentMonth])->where('group_id', $group->id )->orderBy('created_at', 'desc')->paginate(10);
+                $groupConsumptions = GroupConsumption::where('created_at', '>=', Carbon::now()->startOfMonth())->where('group_id', $group->id )->orderBy('created_at', 'desc')->paginate(10);
             }else{
                 $groupConsumptions = GroupConsumption::whereDate('created_at','>=' ,$_GET['startDate'])->whereDate('created_at','<=' ,$_GET['endDate'])->where('group_id', $group->id )->orderBy('created_at', 'asc')->get();
                 return response()->json($groupConsumptions);
             }
-            $all_consumptions =  GroupConsumption::where('group_id', $group->id)->whereRaw( 'MONTH(created_at) = ? ',[$currentMonth])->selectRaw('sum(total_fee)')->get();
+            $all_consumptions =  GroupConsumption::where('group_id', $group->id)->where('created_at', '>=', Carbon::now()->startOfMonth())->selectRaw('sum(total_fee)')->get();
             return view('groups/show', ['all_consumptions' => $all_consumptions, 'currentUserGroup' => $currentUserGroup ,'group'=>$group, 'users' => $users, 'groupConsumptions' => $groupConsumptions, 'currentMonth' => $currentMonth, 'userGroupRequests' => $userGroupRequests]);
         } else {
             return view('403');
