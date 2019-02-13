@@ -19,6 +19,8 @@
       @endif
       <button class="btn btn-success add-member-btn" data-toggle="modal" data-target="#fund">@lang('messages.raise_fund')</button>
 
+      <button class="btn btn-success analytics-btn" ><a class="text-white" href="{{ route('analytics',$group->id)}}">@lang('messages.see_group_analytic')</a></button>
+
       <div class="selector">
         <span><b>Select Date Range: </b></span><input class="month-select" id="daterange" name="dates" value="{{ date('Y-m') }}">
       </div>
@@ -58,7 +60,7 @@
             3 => trans('messages.water_bill'), 4 => trans('messages.electricity_bill') , 
             5 => trans('messages.hire_fee'), 6 => trans('messages.others')), null, array('id' => 'product-type', 'class' => 'group-form')) }}
           {{ Form::hidden('user_id', Auth::id(), array('id' => 'product-person', 'class' => 'group-form'))}}
-          {{Form::submit(trans('messages.create'), ['class' => 'btn btn-success', 'id' => 'ajaxSubmit'])}}
+          {{Form::submit(trans('messages.create'), ['class' => 'btn btn-success add-btn', 'id' => 'ajaxSubmit'])}}
         {{ Form::close() }}
       </div>
       <div class="modal-footer">
