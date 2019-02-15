@@ -13,9 +13,9 @@ $(document).ready(function() {
       quantity: $('#product-quantity').val(),
       total_fee: $('#product-fee').val(),
       type: $('#product-type').val(),
-      user_id: $('#product-person').val(),
+      user_id: $('#user_id').val(),
+      creator_id: $('#creator_id').val(),
       _token : $('meta[name="csrf-token"]').attr('content'),
-
     },
     success: function(result) {
       if (result.errors) {
@@ -24,27 +24,30 @@ $(document).ready(function() {
           jQuery('.alert-danger').append('<p>'+value+'</p>');
         });
       } else{
-        $('#add-product').modal('hide');
-        var newData = '';
         var total_fee = document.getElementById('total-fee').innerHTML;
         total_fee = total_fee.replace(/,/g , '');
         total_fee = total_fee.replace(/ VND/g , '');
         total_fee = parseInt(total_fee);
         result_fee = parseInt(result.total_fee);
         total_fee += result_fee;
-     
-        newData += '<tr><td>' + result.id + '</td><td>' + result.name +'</td><td>' + result.type 
-          + '</td><td>' + result.quantity + '</td><td>' + result.created_at + 
-          '</td><td>'+ result.user_id + '</td><td>' + result.total_fee + '</td></tr>';
-        
-        newTotalFee = total_fee.toLocaleString(
-            undefined, { minimumFractionDigits: 0 });;
+        newTotalFee = total_fee + ' VND'
+        $('#total-fee').html(newTotalFee);
+        $('#add-product').modal('hide');
+        var newData = $('#group-consumption-template').html();
+        newData = newData.replace(/%%group_consumption_id%%/g , result.groupConsumption.id);
+        newData = newData.replace('%%group_consumption_name%%', result.groupConsumption.name);
+        newData = newData.replace('%%group_consumption_type%%', result.groupConsumption.type);
+        newData = newData.replace('%%group_consumption_quantity%%', result.groupConsumption.quantity);
+        newData = newData.replace('%%group_consumption_created_at%%', result.groupConsumption.created_at);
+        newData = newData.replace('%%user_id%%', result.buyerName);
+        newData = newData.replace('%%creator_id%%', result.creatorName);
+        newData = newData.replace('%%group_consumption_total_fee%%', result.groupConsumption.total_fee);
+        console.log(newData);
+        $('#table').prepend(newData);
         $('.alert').show();
         jQuery('.alert').html("Added successfully!!");
         $('#table').fadeOut();
-        $('#table').prepend(newData);
-        $('#total-fee').html(newTotalFee);
-        $('#table').fadeIn(); 
+        $('#table').fadeIn();
     }}
   });
   });

@@ -11,4 +11,14 @@ class GroupConsumption extends Model
     {
       return  $this->belongsTo('App/Group');
     }
+
+    public function user()
+    {
+      return  $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function creator()
+    {
+    	return $this->belongsTo(User::class, 'creator_id');
+    }
 }

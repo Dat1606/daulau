@@ -14,7 +14,7 @@
     @foreach ($userGroupRequests as $userGroupRequest)
 	<tr>
 		<td>{{ $userGroupRequest->id }}</td>
-        <td>{{ $userGroupRequest->userGroup->users->name}}</td>
+        <td>{{ $userGroupRequest->userGroup->user->name}}</td>
         <td>@if ($userGroupRequest->type == '0')
                 @lang('messages.withdraw_money')
             @elseif ($userGroupRequest->type == '1')

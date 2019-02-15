@@ -87,6 +87,7 @@ return [
     'all_debt' => 'Remaining Debt',
     'amount' => 'Amount',
     'action' => 'Action',
+    'buyer'  => 'Buyer',
     'see_group_analytic' => 'See Group Analytics',
 
 ];

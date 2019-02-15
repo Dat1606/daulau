@@ -55,23 +55,27 @@ class GroupController extends Controller
     {
         $currentUser = Auth::user();
         $currentUserGroup = UserGroup::where('group_id', $group->id)->where('user_id', $currentUser->id)->first();
+
         $checkUser = UserGroup::where('group_id', $group->id)->where('user_id', $currentUser->id)->get();
+
         if ($checkUser && $currentUserGroup) {
+
             $currentMonth = date('m');
             $roomId = UserRoom::where('id',$group->room_id)->value('room_id');
             $roomUserIds = UserRoom::where('room_id', $roomId)->pluck('user_id');
             $groupUsers = UserGroup::where('group_id', $group->id)->whereIn('user_id', $roomUserIds)->get();
+            $selectUsers = User::whereIn('id', $groupUsers->pluck('user_id') )->get();
             $users = User::whereIn('id',$roomUserIds)->whereNotIn('id', $groupUsers->pluck('user_id'))->get();
             $userGroupRequests = UserGroupRequest::whereIn('user_group_id', $groupUsers->pluck('id'))->orderBy('created_at', 'desc')->get();
             if (!isset($_GET['startDate'])) 
             {
-                $groupConsumptions = GroupConsumption::where('created_at', '>=', Carbon::now()->startOfMonth())->where('group_id', $group->id )->orderBy('created_at', 'desc')->paginate(10);
+                $groupConsumptions = GroupConsumption::where('created_at', '>=', Carbon::now()->startOfMonth())->where('group_id', $group->id )->orderBy('created_at', 'desc')->with('user')->paginate(10);
             }else{
                 $groupConsumptions = GroupConsumption::whereDate('created_at','>=' ,$_GET['startDate'])->whereDate('created_at','<=' ,$_GET['endDate'])->where('group_id', $group->id )->orderBy('created_at', 'asc')->get();
                 return response()->json($groupConsumptions);
             }
-            $all_consumptions =  GroupConsumption::where('group_id', $group->id)->where('created_at', '>=', Carbon::now()->startOfMonth())->selectRaw('sum(total_fee)')->get();
-            return view('groups/show', ['all_consumptions' => $all_consumptions, 'currentUserGroup' => $currentUserGroup ,'group'=>$group, 'users' => $users, 'groupConsumptions' => $groupConsumptions, 'currentMonth' => $currentMonth, 'userGroupRequests' => $userGroupRequests]);
+            $all_consumptions =  GroupConsumption::where('group_id', $group->id)->where('created_at', '>=', Carbon::now()->startOfMonth())->get()->flatten()->sum('total_fee');
+            return view('groups/show', ['all_consumptions' => $all_consumptions, 'currentUserGroup' => $currentUserGroup ,'group'=>$group, 'users' => $users, 'groupConsumptions' => $groupConsumptions, 'currentMonth' => $currentMonth, 'userGroupRequests' => $userGroupRequests, 'selectUsers' => $selectUsers]);
         } else {
             return view('403');
         }

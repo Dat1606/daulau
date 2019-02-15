@@ -48,7 +48,6 @@
       </div>
       <div class="modal-body">
         {{ Form::open(array('url' => '/group_consumptions', 'method' => 'post', 'id' => 'groupconsumption-form')) }}
-          <div class="alert alert-danger" style="display:none"></div>
           {{ Form::hidden('group_id', $group->id, array('id' => 'group-id', 'class' => 'group-form')) }}
           {{ Form::label('name', trans('messages.product_name'))}}
           {{ Form::text('name', null, array('id' => 'product-name', 'class' => 'group-form')) }}
@@ -56,10 +55,13 @@
           {{ Form::number('quantity', 1, array('id' => 'product-quantity', 'class' => 'group-form bfh-number')) }}
           {{ Form::label('total_fee', @trans('messages.total_fee'))}}
           {{ Form::number('total_fee', null, array('id' => 'product-fee', 'class' => 'group-form')) }}
+          {{ Form::label('type', @trans('messages.type')) }}
           {{ Form::select('type', array(1 => trans('messages.food'), 2 => trans('messages.general_product'),
             3 => trans('messages.water_bill'), 4 => trans('messages.electricity_bill') , 
             5 => trans('messages.hire_fee'), 6 => trans('messages.others')), null, array('id' => 'product-type', 'class' => 'group-form')) }}
-          {{ Form::hidden('user_id', Auth::id(), array('id' => 'product-person', 'class' => 'group-form'))}}
+          {{ Form::label('user_id', @trans('messages.buyer')) }}
+          {{ Form::select('user_id', $selectUsers->pluck('name', 'id'), array('id' => 'product-person', 'class' => 'group-form'))}}
+          {{ Form::hidden('creator_id', Auth::id(), array('class' => 'group-form', 'id' => 'creator_id')) }}
           {{Form::submit(trans('messages.create'), ['class' => 'btn btn-success add-btn', 'id' => 'ajaxSubmit'])}}
         {{ Form::close() }}
       </div>
@@ -129,8 +131,6 @@
   $('input[name="dates"]').daterangepicker();
   $('#daterange').daterangepicker({ startDate: startDay, endDate: today });
    $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-    console.log(picker.startDate.format('YYYY-MM-DD'));
-    console.log(picker.endDate.format('YYYY-MM-DD'));
     $.ajax({
     headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -153,19 +153,21 @@
       $.each(result, function(index, value) {
         console.log(value);
             tr += '<tr><td>' + value.id + '</td><td>' + value.name +'</td><td>' + value.type 
-            + '</td><td>' + value.quantity + '</td><td>' + value.created_at + '</td><td>'+ value.user_id + '</td><td>' + value.total_fee + '</td></tr>';
+            + '</td><td>' + value.quantity + '</td><td>' + value.created_at + '</td><td>'+ value.user_id + '</td><td>'+ value.creator_id + '</td><td>' + value.total_fee + '</td><td><a href="/group_consumptions/' + value.id + '/edit"><button class="btn btn-primary edit-btn"><i class="fa fa-edit"></i></button></a></td></tr>';
       });
       tr2 += '<tr><td>'+ 'All Fees'  + '</td><td>' +'</td><td>' 
-            + '</td><td>' + '</td><td>' +  '</td><td>' + '</td><td>' +(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(total)) + '</td></tr>';
+            + '</td><td>' + '</td><td>' +  '</td><td></td><td>' + '</td><td>' +(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(total)) + '</td></tr>';
       $('#table-data').html(tr);
-      $('#table').append(tr2);
+      $('#table-data').append(tr2);
       $('#table').fadeIn();
     }
   });
   });
+
+$( document ).ready(function() {
   $(".delete-btn").on("submit", function(){
     return confirm("Are you sure?");
   });
-
+});
 </script>
 @endsection

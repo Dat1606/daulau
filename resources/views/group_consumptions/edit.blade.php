@@ -20,9 +20,12 @@
           {{ Form::select('type', array(1 => trans('messages.food'), 2 => trans('messages.general_product'),
             3 => trans('messages.water_bill'), 4 => trans('messages.electricity_bill') , 
             5 => trans('messages.hire_fee'), 6 => trans('messages.others')), null, array('id' => 'product-type', 'class' => 'form-control')) }}
-          {{ Form::hidden('user_id', Auth::id(), array('id' => 'product-person', 'class' => 'form-control'))}}
+          {{ Form::label('user_id', @trans('messages.buyer'))}}
+          {{ Form::select('user_id', $groupUsers->pluck('name', 'id'), null, ['class' => 'form-control']) }}
+          {{ Form::hidden('creator_id', Auth::id(),['class' => 'form-control'] )}}
           {{Form::submit(trans('messages.create'), ['class' => 'btn btn-success add-btn'])}}
         {{ Form::close() }}
+
 	</div>
 </div>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\GroupConsumption;
 use Illuminate\Http\Request;
+use App\UserGroup;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class GroupConsumptionController extends Controller
@@ -12,7 +14,7 @@ class GroupConsumptionController extends Controller
         'name' => 'required',
         'total_fee' => 'required|numeric|min:0',
         'quantity' => 'required',
-        'type' => 'required'
+        'type' => 'required',
     ];
 
     public function index()
@@ -41,8 +43,11 @@ class GroupConsumptionController extends Controller
         $groupConsumption->type = $request->type;
         $groupConsumption->total_fee = $request->total_fee;
         $groupConsumption->user_id = $request->user_id;
+        $groupConsumption->creator_id = $request->creator_id;
         $groupConsumption->save();
-        return response()->json($groupConsumption);
+        $buyerName = User::findOrFail($groupConsumption->user_id)->name;
+        $creatorName = User::findOrFail($groupConsumption->creator_id)->name;
+        return response()->json(['groupConsumption' => $groupConsumption, 'buyerName' => $buyerName, 'creatorName' => $creatorName]);
     }
 
 
@@ -54,7 +59,9 @@ class GroupConsumptionController extends Controller
 
     public function edit(GroupConsumption $groupConsumption)
     {
-        return view('group_consumptions/edit', ['groupConsumption' => $groupConsumption]);
+        $groupUserIds = UserGroup::where('group_id', $groupConsumption->group_id)->select('user_id')->get();
+        $groupUsers = User::whereIn('id',$groupUserIds);
+        return view('group_consumptions/edit', ['groupConsumption' => $groupConsumption, 'groupUsers' => $groupUsers]);
     }
 
 
@@ -72,6 +79,7 @@ class GroupConsumptionController extends Controller
         $groupConsumption->type = $request->type;
         $groupConsumption->total_fee = $request->total_fee;
         $groupConsumption->user_id = $request->user_id;
+        $groupConsumption->creator_id = $request->creator_id;
         $groupConsumption->save();
         return redirect()->route('groups.show', $groupConsumption->group_id);
     }
