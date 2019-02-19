@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     //
-    public function group_consumptions()
+    public function groupConsumptions()
     {
-        return $this->hasMany('App/GroupConsumption');
+        return $this->hasMany(GroupConsumption::class);
+    }
+
+    public function userGroups()
+    {
+    	return $this->hasMany(UserGroup::class);
     }
 }

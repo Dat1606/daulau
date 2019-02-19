@@ -23,6 +23,11 @@ class User extends Authenticatable
     {
        return $this->hasMany(UserGroup::class);
     }
+
+    public function groupConsumptions() 
+    {
+       return $this->hasMany(GroupConsumption::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

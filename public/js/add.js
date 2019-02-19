@@ -28,9 +28,9 @@ $(document).ready(function() {
         total_fee = total_fee.replace(/,/g , '');
         total_fee = total_fee.replace(/ VND/g , '');
         total_fee = parseInt(total_fee);
-        result_fee = parseInt(result.total_fee);
+        result_fee = parseInt(result.groupConsumption.total_fee);
         total_fee += result_fee;
-        newTotalFee = total_fee + ' VND'
+        newTotalFee = total_fee +' VND'
         $('#total-fee').html(newTotalFee);
         $('#add-product').modal('hide');
         var newData = $('#group-consumption-template').html();
@@ -42,7 +42,6 @@ $(document).ready(function() {
         newData = newData.replace('%%user_id%%', result.buyerName);
         newData = newData.replace('%%creator_id%%', result.creatorName);
         newData = newData.replace('%%group_consumption_total_fee%%', result.groupConsumption.total_fee);
-        console.log(newData);
         $('#table').prepend(newData);
         $('.alert').show();
         jQuery('.alert').html("Added successfully!!");

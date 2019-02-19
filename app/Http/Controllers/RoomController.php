@@ -62,7 +62,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('room/create');
     }
 
     /**

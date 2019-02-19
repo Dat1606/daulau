@@ -47,6 +47,7 @@
         </button>
       </div>
       <div class="modal-body">
+         <div class="alert alert-success margin-top" style="display:none"></div>
         {{ Form::open(array('url' => '/group_consumptions', 'method' => 'post', 'id' => 'groupconsumption-form')) }}
           {{ Form::hidden('group_id', $group->id, array('id' => 'group-id', 'class' => 'group-form')) }}
           {{ Form::label('name', trans('messages.product_name'))}}
@@ -130,7 +131,7 @@
   startDay = moment().subtract(7, 'days').calendar() ;
   $('input[name="dates"]').daterangepicker();
   $('#daterange').daterangepicker({ startDate: startDay, endDate: today });
-   $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+  $('#daterange').on('apply.daterangepicker', function(ev, picker) {
     $.ajax({
     headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -143,21 +144,30 @@
       _token : $('meta[name="csrf-token"]').attr('content'),
     },
     success: function(result) {
-      var tr = '';
       var tr2 = '';
       var total = 0;
+      $('#table-data').children().remove();
       for (var i = 0; i < result.length; i++) {
         total += result[i].total_fee
       };
+
       $('#table').fadeOut();
       $.each(result, function(index, value) {
-        console.log(value);
-            tr += '<tr><td>' + value.id + '</td><td>' + value.name +'</td><td>' + value.type 
-            + '</td><td>' + value.quantity + '</td><td>' + value.created_at + '</td><td>'+ value.user_id + '</td><td>'+ value.creator_id + '</td><td>' + value.total_fee + '</td><td><a href="/group_consumptions/' + value.id + '/edit"><button class="btn btn-primary edit-btn"><i class="fa fa-edit"></i></button></a></td></tr>';
+        var newData = $('#group-consumption-template').html();
+        newData = newData.replace(/%%group_consumption_id%%/g , value.id);
+        newData = newData.replace('%%group_consumption_name%%', value.name);
+        newData = newData.replace('%%group_consumption_type%%',value.type);
+        newData = newData.replace('%%group_consumption_quantity%%', value.quantity);
+        newData = newData.replace('%%group_consumption_created_at%%', value.created_at);
+        newData = newData.replace('%%user_id%%', value.user.name);
+        newData = newData.replace('%%creator_id%%', value.creator.name);
+        newData = newData.replace('%%group_consumption_total_fee%%', value.total_fee);
+        $('#table-data').append(newData);
       });
+
       tr2 += '<tr><td>'+ 'All Fees'  + '</td><td>' +'</td><td>' 
             + '</td><td>' + '</td><td>' +  '</td><td></td><td>' + '</td><td>' +(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(total)) + '</td></tr>';
-      $('#table-data').html(tr);
+      
       $('#table-data').append(tr2);
       $('#table').fadeIn();
     }

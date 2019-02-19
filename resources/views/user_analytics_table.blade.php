@@ -9,13 +9,16 @@
 </thead>
 	
 <tbody>
-    @foreach ($users as $user)
+    @forelse ($users as $user)
         <tr>
-        	<td>{{ $user->first()->name }}</td>
-            <td>{{ number_format($user->first()->supported_budget) }}</td>
-            <td>{{ number_format($user->pluck('total_fee')->sum()) }}</td>
-            <td>{{ number_format($user->first()->withdrew_money) }}</td>
-            <td>{{ number_format(-((($rawUsers->pluck('total_fee')->sum() + $groupFund->pluck('supported_budget')->sum() - $groupFund->pluck('withdrew_money')->sum())/$users->count()) - ($user->first()->supported_budget + $user->pluck('total_fee')->sum() - $user->first()->withdrew_money))) }}</td>
+        	<td>{{ $user->name }}</td>
+            <td>{{ number_format($user->userGroups[0]->supported_budget) }}</td>
+            <td>{{ number_format($user->groupConsumptions->pluck('total_fee')->sum()) }}</td>
+            <td>{{ number_format($user->userGroups[0]->withdrew_money) }}</td>
+            <td>{{ number_format(-((($users->pluck('groupConsumptions')->flatten()->pluck('total_fee')->sum() + $groupFund->pluck('supported_budget')->sum() - $groupFund->pluck('withdrew_money')->sum())/$users->count()) - ($user->userGroups[0]->supported_budget + $user->groupConsumptions->pluck('total_fee')->sum() - $user->userGroups[0]->withdrew_money))) }}</td>
         </tr>
-    @endforeach
+
+    @empty
+        <tr>s</tr>
+    @endforelse
 </tbody>
