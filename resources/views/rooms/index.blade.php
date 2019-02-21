@@ -8,7 +8,7 @@
           @if (DB::table('photos')->where('room_id', $room->id)->value('name') != null)
             <img class="banner-image" src="{{ DB::table('photos')->where('room_id', $room->id)->limit(1)->value('name') }}">
           @else
-            <img class="banner-image" src="https://image.freepik.com/free-icon/dwelling-house_318-1861.jpg">
+            <img class="banner-image" src="https://junkmailimages.blob.core.windows.net/large/80c5d9d9d43b4626bf7173fc9724afde.jpg">
           @endif
         </div>
         <div class="room-content">

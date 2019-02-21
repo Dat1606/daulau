@@ -24,6 +24,14 @@ $(document).ready(function() {
           jQuery('.alert-danger').append('<p>'+value+'</p>');
         });
       } else{
+        var type = {
+          1: 'Food',
+          2: 'General Product',
+          3: 'Water Bill',
+          4: 'Electricity Bill',
+          5: 'Hire Fee',
+          6: 'Others',
+        }
         var total_fee = document.getElementById('total-fee').innerHTML;
         total_fee = total_fee.replace(/,/g , '');
         total_fee = total_fee.replace(/ VND/g , '');
@@ -35,8 +43,8 @@ $(document).ready(function() {
         $('#add-product').modal('hide');
         var newData = $('#group-consumption-template').html();
         newData = newData.replace(/%%group_consumption_id%%/g , result.groupConsumption.id);
-        newData = newData.replace('%%group_consumption_name%%', result.groupConsumption.name);
-        newData = newData.replace('%%group_consumption_type%%', result.groupConsumption.type);
+        newData = newData.replace('%%group_consumption_name%%', result.groupConsumption.name.substring(0,12));
+        newData = newData.replace('%%group_consumption_type%%', type[result.groupConsumption.type]);
         newData = newData.replace('%%group_consumption_quantity%%', result.groupConsumption.quantity);
         newData = newData.replace('%%group_consumption_created_at%%', result.groupConsumption.created_at);
         newData = newData.replace('%%user_id%%', result.buyerName);

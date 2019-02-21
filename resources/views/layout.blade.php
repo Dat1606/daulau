@@ -32,22 +32,20 @@
           <span class="nav-word">or</span>
           <a href="{{ route('register') }}" class="nav-item">@lang('messages.sign_up')</a>
         @else
-        <h2 class="nav-item dropdown">
-          <a href="#" class="dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            {{ Auth::user()->name }}
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a href="{{ route('logout') }}" class="dropdown-item"
-              onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-              Logout
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-              style="display: none;">
-              {{ csrf_field() }}
-            </form>
-          </div>
-        </li>
+        <div class="nav-item dropdown">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                 {{ Auth::user()->name }}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item user-dropdown" href="{{ route('users.show', Auth::id()) }}">Profile Page</a>
+                <a href="{{ route('logout') }}" class="dropdown-item user-dropdown"
+                  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                  style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+            </div>
+        </div>
         @endif
         </div>
       </div>

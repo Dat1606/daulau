@@ -10,12 +10,14 @@
       @if ($errors->any())
         {{ implode('', $errors->all('<div>:message</div>')) }}
       @endif
+
       <div class="col-md-5">
         @if ($photo_name)
           <img class="show-room-image" src="/{{ $photo_name }}">
         @else
-          <img class="show-room-image" src="https://image.freepik.com/free-icon/dwelling-house_318-1861.jpg">
+          <img class="show-room-image" src="https://junkmailimages.blob.core.windows.net/large/80c5d9d9d43b4626bf7173fc9724afde.jpg">
         @endif
+        
       </div>
       <div class="col-md-6 show-room-content">
       <h4>{{ $room->name }}</h4>

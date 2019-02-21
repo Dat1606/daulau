@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-  <div class="row main-content">
+  <div class="main-content">
     <div class="content-left col-md-3 text-center">
       <a href="{{ route('rooms.create') }}">
         <h2 class="banner">@lang('messages.i_have_a_room')</h2>

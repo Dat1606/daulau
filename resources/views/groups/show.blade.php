@@ -125,6 +125,14 @@
 </div>
 
 <script> 
+  var type = {
+    1: 'Food',
+    2: 'General Product',
+    3: 'Water Bill',
+    4: 'Electricity Bill',
+    5: 'Hire Fee',
+    6: 'Others',
+  }
   var today = new Date();
   var startDay = today.getDate()-7;
   today = moment().format('L');
@@ -156,7 +164,7 @@
         var newData = $('#group-consumption-template').html();
         newData = newData.replace(/%%group_consumption_id%%/g , value.id);
         newData = newData.replace('%%group_consumption_name%%', value.name);
-        newData = newData.replace('%%group_consumption_type%%',value.type);
+        newData = newData.replace('%%group_consumption_type%%', type[value.type]);
         newData = newData.replace('%%group_consumption_quantity%%', value.quantity);
         newData = newData.replace('%%group_consumption_created_at%%', value.created_at);
         newData = newData.replace('%%user_id%%', value.user.name);

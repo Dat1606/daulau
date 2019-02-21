@@ -59,12 +59,12 @@ return [
     'add' => 'Add consumption',
     'add_bought_product' => 'Add bought product',
     'food' => 'Food',
-    'electricity' => 'Electricity bill',
-    'water_bill' => 'Water bill',
-    'electricity_bill' => 'Electricity bill',
-    'general_product' => 'General product',
-    'hire_fee' => 'Hire fee',
-    'others' => 'others',
+    'electricity' => 'Electricity Bill',
+    'water_bill' => 'Water Bill',
+    'electricity_bill' => 'Electricity Bill',
+    'general_product' => 'General Product',
+    'hire_fee' => 'Hire Fee',
+    'others' => 'Others',
     'month_consumption' => 'Month Consumption',
     'consumption_type' => 'Type',
     'food_consumption' => '',
@@ -89,5 +89,9 @@ return [
     'action' => 'Action',
     'buyer'  => 'Buyer',
     'see_group_analytic' => 'See Group Analytics',
+    'user_address' => 'Address',
+    'gender' => 'Gender',
+    'occupation' => 'Occupation',
+    'updated_by' => 'Updated by'
 
 ];

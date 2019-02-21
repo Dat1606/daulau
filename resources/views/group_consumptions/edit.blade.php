@@ -24,7 +24,7 @@
           {{ Form::select('user_id', $groupUsers->pluck('name', 'id'), null, ['class' => 'form-control']) }}
           {{ Form::hidden('creator_id', Auth::id(),['class' => 'form-control'] )}}
           {{Form::submit(trans('messages.create'), ['class' => 'btn btn-success add-btn'])}}
-        {{ Form::close() }}
+    {{ Form::close() }}
 
 	</div>
 </div>

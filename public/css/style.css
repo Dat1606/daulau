@@ -28,7 +28,9 @@
 .nav-word {
   color:white;
 }
-
+.page-content{
+  min-height: 80vh;
+}
 .page-footer {
   color: #fff;
   font-family: Roboto,sans-serif;
@@ -92,6 +94,7 @@
   text-decoration: none;
   color:green !important;
 }
+
 .banner {
   padding-top:40px;
 }
@@ -191,7 +194,12 @@
 }
 
 .main-content {
-  margin-bottom: 100px;
+  display: -webkit-box;
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px; 
+  height:80vh;
+  background-image: url(http://thuthuatphanmem.vn/uploads/2018/05/18/hinh-nen-slide-dep-44_023218270.jpg)
 }
 
 .add-member-btn {
@@ -262,4 +270,14 @@
   font-size: 20px;
   color: red;
   display: inline-block;
+}
+
+.name-image {
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+.general-information {
+  margin-top: 30px;
+  margin-left: 30px;
 }

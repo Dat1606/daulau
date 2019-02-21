@@ -6,7 +6,7 @@
     <th scope="col">@lang('messages.quantity')</th>
     <th scope="col">@lang('messages.create_date')</th>
     <th scope="col">@lang('messages.buyer')</th>
-    <th scope="col">@lang('messages.creator')</th>
+    <th scope="col">@lang('messages.updated_by')</th>
     <th scope="col">@lang('messages.total_fee')</th>
     <th scope="col">@lang('messages.action')</th>
   </tr>
@@ -15,8 +15,8 @@
   @foreach ($groupConsumptions as $groupConsumption)
   <tr >
     <th scope="row">{{ $groupConsumption->id }}</th>
-    <td>{{ str_limit($groupConsumption->name, $limit=150, $end='...') }}</td>
-    <td>@lang('messages.'. (array_search($groupConsumption->type, config('group-consumption-type')) ?: 'others'))</td>
+    <td>{{ str_limit($groupConsumption->name, $limit=10, $end='...') }}</td>
+    <td>{{ str_limit(trans('messages.'. (array_search($groupConsumption->type, config('group-consumption-type')) ?: 'others')), $limit=7, $end='...' ) }}</td>
     <td>{{ $groupConsumption->quantity }}</td>
     <td>{{ $groupConsumption->created_at->format('d/m/Y  H:i') }}</td>
     <td>{{ str_limit($groupConsumption->user->name, $limit=10, $end='...') }}</td>

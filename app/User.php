@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     public function groupConsumptions() 
     {
-       return $this->hasMany(GroupConsumption::class);
+       return $this->hasMany(GroupConsumption::class, 'user_id');
     }
     /**
      * The attributes that are mass assignable.

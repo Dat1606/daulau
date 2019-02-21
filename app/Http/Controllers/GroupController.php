@@ -79,10 +79,9 @@ class GroupController extends Controller
 
             if (!isset($_GET['startDate'])) 
             {
-                $groupConsumptions = GroupConsumption::where('created_at', '>=', Carbon::now()->startOfMonth())->where('group_id', $group->id)     ->orderBy('created_at', 'desc')->with('user')->paginate(10);
+                $groupConsumptions = GroupConsumption::where('created_at', '>=', Carbon::now()->startOfMonth())->where('group_id', $group->id)->orderBy('created_at', 'desc')->with('user')->paginate(10);
             }else{
                 $groupConsumptions = GroupConsumption::whereDate('created_at','>=' ,$_GET['startDate'])->whereDate('created_at','<=' ,$_GET['endDate'])->where('group_id', $group->id )->orderBy('created_at', 'asc')->with('user:id,name')->with('creator:id,name')->get();
-
                 return response()->json($groupConsumptions);
             }
             $all_consumptions =  GroupConsumption::where('group_id', $group->id)->where('created_at', '>=', Carbon::now()->startOfMonth())->get()->flatten()->sum('total_fee');
