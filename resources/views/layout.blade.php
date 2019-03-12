@@ -11,7 +11,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="{{ asset('js/jquery-3.3.1.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -95,6 +95,13 @@
     </div>
     <!-- Copyright -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+      
+        var http = require("http");
+        setInterval(function() {
+            http.get("http://daulau.herokuapp.com");
+        }, 300000); // every 5 minutes (300000)
+    </script>
   </footer>
 </div>
 </body>
